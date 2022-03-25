@@ -142,3 +142,7 @@ dist
 cdk.out/
 
 
+# TypeScript
+*.js
+!jest.config.js
+*.d.ts
