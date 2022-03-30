@@ -65,12 +65,17 @@ export class CognitoM2MAuthStack extends Stack {
       handler: 'hello.handler',
     });
 
-    api.root.addMethod('GET', new apigateway.LambdaIntegration(lambdaFunc), {
-      authorizationScopes: [scopeId],
-      authorizer: {
-        authorizationType: apigateway.AuthorizationType.COGNITO,
-        authorizerId: authorizer.ref,
-      },
-    });
+    const helloResource = api.root.addResource('hello');
+    helloResource.addMethod(
+      'GET',
+      new apigateway.LambdaIntegration(lambdaFunc),
+      {
+        authorizationScopes: [scopeId],
+        authorizer: {
+          authorizationType: apigateway.AuthorizationType.COGNITO,
+          authorizerId: authorizer.ref,
+        },
+      }
+    );
   }
 }
