@@ -1,10 +1,9 @@
-import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
+import { Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as cognito from 'aws-cdk-lib/aws-cognito';
 import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as apigateway from 'aws-cdk-lib/aws-apigateway';
-import { UserPoolClient } from 'aws-cdk-lib/aws-cognito';
-import { AuthorizationType, Authorizer } from 'aws-cdk-lib/aws-apigateway';
+import { AuthorizationType } from 'aws-cdk-lib/aws-apigateway';
 
 export class CognitoM2MAuthStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
