@@ -9,10 +9,6 @@ export class CognitoM2MAuthStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const api = new apigateway.RestApi(this, 'M2MAuthRestApi', {
-      restApiName: 'M2MAuthRestApi',
-    });
-
     const userPool = new cognito.UserPool(this, 'M2MAuthUserPool', {
       userPoolName: 'M2MAuthUserPool',
     });
@@ -48,6 +44,10 @@ export class CognitoM2MAuthStack extends Stack {
           },
         ],
       },
+    });
+
+    const api = new apigateway.RestApi(this, 'M2MAuthRestApi', {
+      restApiName: 'M2MAuthRestApi',
     });
 
     const authorizer = new apigateway.CfnAuthorizer(this, 'M2MAuthorizer', {
