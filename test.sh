@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 BASE_DIR=$(dirname "$0")
-
 source ${BASE_DIR}/.env
+
 AUTH=$(echo -n ${COGNITO_CLIENT_ID}:${COGNITO_CLIENT_SECRET} | base64)
 AUTH_SCOPE='example.com/read'
-AUTH_ENDPOINT="${COGNITO_DOMAIN}/oauth2/token"
+TOKEN_ENDPOINT="${COGNITO_DOMAIN}/oauth2/token"
 
 echo 'Getting the access token...'
 
@@ -14,7 +14,7 @@ TOKEN=$(curl -sX POST \
   -H "Authorization: Basic ${AUTH}" \
   -d 'grant_type=client_credentials' \
   -d "scope=${AUTH_SCOPE}" \
-  ${AUTH_ENDPOINT} \
+  ${TOKEN_ENDPOINT} \
   | jq -r '.access_token')
 
 echo $'Done.\n'
